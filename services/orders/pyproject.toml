@@ -1,0 +1,6 @@
+[project]
+name = "orders-service"
+version = "3.2.0"
+description = "Orders, customers and checkout"
+requires-python = ">=3.11"
+dependencies = ["shopcore"]

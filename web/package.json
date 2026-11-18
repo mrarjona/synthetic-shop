@@ -1,0 +1,9 @@
+{
+  "name": "@shop/web",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@shop/ui-kit": "workspace:*",
+    "react": "^18.3.1"
+  }
+}

@@ -1,0 +1,5 @@
+[project]
+name = "shopcore"
+version = "1.4.0"
+description = "Shared building blocks of the shop services"
+requires-python = ">=3.11"
