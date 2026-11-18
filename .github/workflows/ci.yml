@@ -4,6 +4,9 @@ jobs:
   orders:
     runs-on: ubuntu-latest
     steps: [{uses: actions/checkout@v4}, {run: "cd services/orders && python -m pytest -q"}]
+  notifications:
+    runs-on: ubuntu-latest
+    steps: [{uses: actions/checkout@v4}, {run: "cd services/notifications && python -m pytest -q"}]
   payments:
     runs-on: ubuntu-latest
     steps: [{uses: actions/checkout@v4}, {run: "cd services/payments && go test ./..."}]
