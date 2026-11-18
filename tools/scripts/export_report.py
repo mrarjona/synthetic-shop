@@ -1,6 +1,7 @@
-"""Export the orders table as SQL."""
-from orders.repository.memory import ORDERS
-from orders.repository.sql import save
+"""Export the orders of a running orders service as CSV, through its HTTP API."""
+import json
+import urllib.request
 
-for order in ORDERS.items.values():
-    print(save(order))
+with urllib.request.urlopen("http://localhost:8000/backoffice/orders") as r:
+    for order_id in json.load(r):
+        print(order_id)
