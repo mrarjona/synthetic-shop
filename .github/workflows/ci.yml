@@ -1,12 +1,36 @@
 name: ci
 on: [push, pull_request]
+env:
+  PYTHONPATH: ${{ github.workspace }}/libs/shopcore/src:${{ github.workspace }}/services/orders/src:${{ github.workspace }}/services/notifications/src
 jobs:
   orders:
     runs-on: ubuntu-latest
-    steps: [{uses: actions/checkout@v4}, {run: "cd services/orders && python -m pytest -q"}]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install pytest pytest-cov
+      - run: cd services/orders && python -m pytest -q --cov=src --cov-report=xml:coverage.xml
+      - uses: codecov/codecov-action@v5
+        with: {token: "${{ secrets.CODECOV_TOKEN }}", files: services/orders/coverage.xml, flags: orders}
+
   notifications:
     runs-on: ubuntu-latest
-    steps: [{uses: actions/checkout@v4}, {run: "cd services/notifications && python -m pytest -q"}]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install pytest pytest-cov
+      - run: cd services/notifications && python -m pytest -q --cov=src --cov-report=xml:coverage.xml
+      - uses: codecov/codecov-action@v5
+        with: {token: "${{ secrets.CODECOV_TOKEN }}", files: services/notifications/coverage.xml, flags: notifications}
+
   payments:
     runs-on: ubuntu-latest
-    steps: [{uses: actions/checkout@v4}, {run: "cd services/payments && go test ./..."}]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version-file: services/payments/go.mod}
+      - run: cd services/payments && go test ./... -coverprofile=coverage.out
+      - uses: codecov/codecov-action@v5
+        with: {token: "${{ secrets.CODECOV_TOKEN }}", files: services/payments/coverage.out, flags: payments}
