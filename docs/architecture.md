@@ -1,3 +1,4 @@
-# Architecture: orders, payments and web share shopcore and ui-kit.
+# Architecture
 
-Synthetic documentation for prdiagram's playground.
+Orders, payments, notifications and web share shopcore and ui-kit. Scripts talk to the services
+through their HTTP APIs only.

@@ -22,8 +22,8 @@ def customers() -> list[str]:
 
 
 ROUTES = {
-    "GET /admin/orders": list_all,
-    "GET /admin/orders/by-status": count_by_status,
-    "GET /admin/orders/cancelled": cancelled,
-    "GET /admin/customers": customers,
+    "GET /backoffice/orders": list_all,
+    "GET /backoffice/orders/by-status": count_by_status,
+    "GET /backoffice/orders/cancelled": cancelled,
+    "GET /backoffice/customers": customers,
 }
