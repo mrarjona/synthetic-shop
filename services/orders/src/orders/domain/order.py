@@ -14,6 +14,7 @@ class Order:
     items: list[LineItem]
     status: Status = Status.NEW
     id: str = field(default_factory=lambda: new_id("ord"))
+    refunded: Money | None = None
 
     @property
     def total(self) -> Money:
@@ -21,3 +22,8 @@ class Order:
 
     def cancel(self) -> None:
         self.status = Status.CANCELLED
+
+    def mark_refunded(self, amount: Money) -> None:
+        self.refunded = amount if self.refunded is None else self.refunded + amount
+        if self.refunded.amount >= self.total.amount:
+            self.status = Status.REFUNDED
