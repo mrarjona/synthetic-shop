@@ -11,6 +11,8 @@ jobs:
         with: {python-version: "3.12"}
       - run: pip install pytest pytest-cov
       - run: cd services/orders && python -m pytest -q --cov=src --cov-report=xml:coverage.xml
+      - uses: actions/upload-artifact@v4
+        with: {name: coverage-orders, path: services/orders/coverage.xml}
       - uses: codecov/codecov-action@v5
         with: {token: "${{ secrets.CODECOV_TOKEN }}", files: services/orders/coverage.xml, flags: orders}
 
@@ -22,6 +24,8 @@ jobs:
         with: {python-version: "3.12"}
       - run: pip install pytest pytest-cov
       - run: cd services/notifications && python -m pytest -q --cov=src --cov-report=xml:coverage.xml
+      - uses: actions/upload-artifact@v4
+        with: {name: coverage-notifications, path: services/notifications/coverage.xml}
       - uses: codecov/codecov-action@v5
         with: {token: "${{ secrets.CODECOV_TOKEN }}", files: services/notifications/coverage.xml, flags: notifications}
 
