@@ -1,7 +1,7 @@
 component,team,on_call,required_reviewers
-orders-service,checkout,checkout-oncall,2
+orders-service,checkout,checkout-oncall,3
 payments,payments,payments-oncall,2
 shopcore,platform,platform-oncall,1
 @shop/ui-kit,frontend,frontend-oncall,1
 @shop/web,frontend,frontend-oncall,1
-scripts,platform,,1
+scripts,platform,platform-oncall,1

@@ -12,7 +12,7 @@ const FIELDS: Field[] = [
   { name: 'card', label: 'Card number' },
 ];
 
-export function OldCheckout({ total = '0' }: { total?: string }) {
+export function Checkout({ total = '0' }: { total?: string }) {
   return (
     <Card>
       <form>

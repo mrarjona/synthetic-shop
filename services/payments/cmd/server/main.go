@@ -10,7 +10,8 @@ import (
 )
 
 func main() {
-	gw := gateway.New(gateway.NewStripe())
+	stripe := gateway.NewStripe()
+	gw := gateway.New(stripe)
 	l := ledger.New(ledger.NewMemoryStore())
-	log.Fatal(http.ListenAndServe(":8080", api.Routes(gw, l)))
+	log.Fatal(http.ListenAndServe(":8080", api.Routes(gw, l, stripe)))
 }

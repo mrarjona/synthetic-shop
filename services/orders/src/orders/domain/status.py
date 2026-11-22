@@ -6,3 +6,4 @@ class Status(str, Enum):
     PAID = "paid"
     SHIPPED = "shipped"
     CANCELLED = "cancelled"
+    REFUNDED = "refunded"
